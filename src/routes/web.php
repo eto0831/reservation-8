@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\ShopController;
 
 
 /*
@@ -19,5 +20,5 @@ Route::get('/welcome', function () {
     return view('welcome');
 });
 Route::middleware(['auth', 'verified'])->group(function () {
-    Route::get('/', [AuthController::class, 'index']);
+    Route::get('/', [ShopController::class, 'index']);
 });

@@ -10,27 +10,17 @@
 </div>
 
 <div class="attendance__content">
-    <div class="attendance__panel">
-        <form class="attendance__button">
-            <button class="attendance__button-submit" type="submit">勤務開始</button>
-        </form>
-        <form class="attendance__button">
-            <button class="attendance__button-submit" type="submit">勤務終了</button>
-        </form>
-    </div>
-    <div class="attendance-table">
-        <table class="attendance-table__inner">
-            <tr class="attendance-table__row">
-                <th class="attendance-table__header">名前</th>
-                <th class="attendance-table__header">開始時間</th>
-                <th class="attendance-table__header">終了時間</th>
-            </tr>
-            <tr class="attendance-table__row">
-                <td class="attendance-table__item">サンプル太郎</td>
-                <td class="attendance-table__item">サンプル</td>
-                <td class="attendance-table__item">サンプル</td>
-            </tr>
-        </table>
-    </div>
+    <h1>店舗一覧</h1>
+    <ul>
+        @foreach ($shops as $shop)
+            <li>
+                <h2>{{ $shop->shop_name }}</h2>
+                <p>ジャンル: {{ $shop->genre->name }}</p>
+                <p>エリア: {{ $shop->area->name }}</p>
+                <p>説明: {{ $shop->description }}</p>
+                <img src="{{ asset($shop->image_url) }}" alt="{{ $shop->shop_name }}">
+            </li>
+        @endforeach
+    </ul>
 </div>
 @endsection
