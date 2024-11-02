@@ -23,6 +23,6 @@ class Reservation extends Model
 
     public function review()
     {
-        return $this->hasOne(Review::class);
+        return $this->hasOneOrMany(Review::class);
     }
 }
