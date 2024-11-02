@@ -15,8 +15,8 @@
         @foreach ($shops as $shop)
             <li>
                 <h2>{{ $shop->shop_name }}</h2>
-                <p>ジャンル: {{ $shop->genre->name }}</p>
-                <p>エリア: {{ $shop->area->name }}</p>
+                <p>ジャンル: {{ $shop->genre->genre_name }}</p>
+                <p>エリア: {{ $shop->area->area_name }}</p>
                 <p>説明: {{ $shop->description }}</p>
                 <img src="{{ asset($shop->image_url) }}" alt="{{ $shop->shop_name }}">
             </li>
