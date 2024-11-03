@@ -9,7 +9,7 @@ class Shop extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['shop_name', 'genre_id', 'area_id', 'description', 'avg_rating', 'image_url' ];
+    protected $fillable = ['shop_name', 'genre_id', 'area_id', 'description', 'avg_rating', 'image_url'];
 
     public function genre()
     {
@@ -34,6 +34,27 @@ class Shop extends Model
     public function reviews()
     {
         return $this->hasMany(review::class);
+    }
+
+    public function scopeGenreSearch($query, $genre_id)
+    {
+        if (!empty($genre_id)) {
+            $query->where('genre_id', $genre_id);
+        }
+    }
+
+    public function scopeAreaSearch($query, $area_id)
+    {
+        if (!empty($area_id)) {
+            $query->where('area_id', $area_id);
+        }
+    }
+
+    public function scopeKeywordSearch($query, $keyword)
+    {
+        if (!empty($keyword)) {
+            $query->where('shop_name', 'like', '%' . $keyword . '%');
+        }
     }
 
 }

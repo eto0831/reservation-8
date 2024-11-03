@@ -21,4 +21,5 @@ Route::get('/welcome', function () {
 });
 Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('/', [ShopController::class, 'index']);
+    Route::match(['get', 'post'], '/search', [ShopController::class, 'search']);
 });
