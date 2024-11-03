@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Shop;
 use App\Models\Area;
 use App\Models\Genre;
+use App\Models\Favorite;
 
 class ShopController extends Controller
 {
@@ -14,6 +15,7 @@ class ShopController extends Controller
         $shops = Shop::with(['genre', 'area'])->get();
         $areas = Area::all(); // エリア情報を取得
         $genres = Genre::all(); // ジャンル情報を取得
+        $favorites = auth()->user()->favorites()->pluck('shop_id')->toArray();
         return view('index', compact('shops', 'areas', 'genres'));
     }
 
@@ -22,6 +24,7 @@ class ShopController extends Controller
         $shops = Shop::with(['genre', 'area'])->GenreSearch($request->genre_id)->AreaSearch($request->area_id)->KeywordSearch($request->keyword)->paginate(7);
         $areas = Area::all();
         $genres = Genre::all();
+        $favorites = auth()->user()->favorites()->pluck('shop_id')->toArray();
         return view('index', compact('shops', 'areas', 'genres'));
     }
 }

@@ -42,27 +42,27 @@
     </form>
     <ul>
         @foreach ($shops as $shop)
-            <li>
-                <h2>{{ $shop->shop_name }}</h2>
-                <p>ジャンル: {{ $shop->genre->genre_name }}</p>
-                <p>エリア: {{ $shop->area->area_name }}</p>
-                <p>説明: {{ $shop->description }}</p>
-                <img src="{{ asset($shop->image_url) }}" alt="{{ $shop->shop_name }}" class="shop__img" >
-                
-                <form action="/favorite" method="POST">
-                    @csrf
-                    <input type="hidden" name=shop_id value="{{ $shop['id'] }}">
-                    <button type="submit">お気に入り</button>
-                </form>
-
-                <form action="/not-favorite" method="post">
-                    @method('DELETE')
-                    @csrf
-                    <input type="hidden" name=shop_id value="{{ $shop['id'] }}">
-                    <button type="submit">お気に入りから外す</button>
-                </form>
-                
-            </li>
+        <li>
+            <h2>{{ $shop->shop_name }}</h2>
+            <p>ジャンル: {{ $shop->genre->genre_name }}</p>
+            <p>エリア: {{ $shop->area->area_name }}</p>
+            <p>説明: {{ $shop->description }}</p>
+            <img src="{{ asset($shop->image_url) }}" alt="{{ $shop->shop_name }}" class="shop__img">
+            @if ($shop->isFavorited)
+            <form action="/not-favorite" method="post">
+                @method('DELETE')
+                @csrf
+                <input type="hidden" name="shop_id" value="{{ $shop['id'] }}">
+                <button type="submit">お気に入りから外す</button>
+            </form>
+            @else
+            <form action="/favorite" method="POST">
+                @csrf
+                <input type="hidden" name="shop_id" value="{{ $shop['id'] }}">
+                <button type="submit">お気に入り</button>
+            </form>
+            @endif
+        </li>
         @endforeach
     </ul>
 </div>
