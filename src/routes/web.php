@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\ShopController;
+use App\Http\Controllers\FavoriteController;
 
 
 /*
@@ -22,4 +23,6 @@ Route::get('/welcome', function () {
 Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('/', [ShopController::class, 'index']);
     Route::match(['get', 'post'], '/search', [ShopController::class, 'search']);
+    Route::post('/favorite', [FavoriteController::class, 'store']);
+    Route::delete('/not-favorite', [FavoriteController::class, 'destroy']);
 });
