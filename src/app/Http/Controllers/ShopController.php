@@ -27,4 +27,14 @@ class ShopController extends Controller
         $favorites = auth()->user()->favorites()->pluck('shop_id')->toArray();
         return view('index', compact('shops', 'areas', 'genres'));
     }
+
+    public function detail(Request $request)
+    {
+        $shop_id = $request->shop_id;
+        $shop = Shop::find($request->id);
+        $areas = Area::all();
+        $genres = Genre::all();
+        $favorites = auth()->user()->favorites()->pluck('shop_id')->toArray();
+        return view('detail', compact('shop', 'areas', 'genres'));
+    }
 }
