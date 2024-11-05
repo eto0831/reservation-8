@@ -48,7 +48,7 @@
             <p>エリア: {{ $shop->area->area_name }}</p>
             <p>説明: {{ $shop->description }}</p>
             <img src="{{ asset($shop->image_url) }}" alt="{{ $shop->shop_name }}" class="shop__img">
-            <a href="{{ url('/detail/' . $shop->id) }}">詳しく見る</a>
+            <a href="/detail/{{ $shop->id }}">詳しく見る</a>
             @if ($shop->isFavorited)
             <form action="/not-favorite" method="post">
                 @method('DELETE')

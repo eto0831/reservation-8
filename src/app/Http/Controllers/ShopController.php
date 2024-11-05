@@ -30,8 +30,7 @@ class ShopController extends Controller
 
     public function detail(Request $request)
     {
-        $shop_id = $request->shop_id;
-        $shop = Shop::find($request->id);
+        $shop = Shop::find($request->shop_id);
         $areas = Area::all();
         $genres = Genre::all();
         $favorites = auth()->user()->favorites()->pluck('shop_id')->toArray();

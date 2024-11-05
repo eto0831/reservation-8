@@ -22,7 +22,7 @@ Route::get('/welcome', function () {
 });
 Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('/', [ShopController::class, 'index']);
-    Route::get('/detail/{id}', [ShopController::class, 'detail']);
+    Route::get('/detail/{shop_id}', [ShopController::class, 'detail']);
     Route::match(['get', 'post'], '/search', [ShopController::class, 'search']);
     Route::post('/favorite', [FavoriteController::class, 'store']);
     Route::delete('/not-favorite', [FavoriteController::class, 'destroy']);
