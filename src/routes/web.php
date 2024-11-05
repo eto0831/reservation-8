@@ -28,5 +28,5 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::match(['get', 'post'], '/search', [ShopController::class, 'search']);
     Route::post('/favorite', [FavoriteController::class, 'store']);
     Route::delete('/not-favorite', [FavoriteController::class, 'destroy']);
-    Route::get('/mypage', [User::class, 'index']);
+    Route::get('/mypage', [AuthController::class, 'index']);
 });

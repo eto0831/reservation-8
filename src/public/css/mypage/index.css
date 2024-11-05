@@ -1,0 +1,16 @@
+.shop__img{
+    width: 300px;
+}
+
+.mypage__content{
+    display: flex;
+
+}
+
+.reservations__wrap{
+    width: 50%;
+}
+
+.favorites__wrap{
+    width: 50%;
+}
