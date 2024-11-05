@@ -4,6 +4,10 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use App\Models\User;
+use App\Models\Shop;
+
+
 
 class Reservation extends Model
 {
@@ -26,17 +30,4 @@ class Reservation extends Model
         return $this->hasOneOrMany(Review::class);
     }
 
-    public function store ()
-    {
-        $reservation = new Reservation();
-        $reservation->user_id = $this->user_id;
-        $reservation->shop_id = $this->shop_id;
-        $reservation->reserve_date = $this->reserve_date;
-        $reservation->reserve_time = $this->reserve_time;
-        $reservation->guest_count = $this->guest_count;
-
-        Reservation::create($reservation->toArray());
-
-        return $reservation;
-    }
 }

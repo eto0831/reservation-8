@@ -9,7 +9,7 @@
     // メッセージ機能
 </div>
 
-<div class="attendance__content">
+<div class="detail__content">
     <div class="detail__wrap">
         <h1>店舗詳細</h1>
         <ul>
@@ -42,35 +42,49 @@
             @csrf
             <input type="hidden" name="shop_id" value="{{ $shop->id }}">
             <input type="date" name="reserve_date" id="reserve_date">
-            <input type="time" name="reserve_time" id="reserve_time">
-            <input type="number" name="guest_count" id="guest_count">
+            <select name="reserve_time" id="reserve_time" required>
+                <option value="" disabled selected>時間を選択してください</option>
+                    @for ($hour = 10; $hour<= 22; $hour++)
+                        @foreach (['00', '15', '30', '45'] as $minute)
+                            <option value="{{ sprintf('%02d:%02d', $hour, $minute) }}">
+                                {{ sprintf('%02d:%02d', $hour, $minute) }}
+                            </option>
+                        @endforeach
+                    @endfor
+            </select>
+            <select name="guest_count" id="guest_count">
+                <option value="" disabled selected>人数を選択してください</option>
+                    @for ($i = 1; $i <= 10; $i++)
+                        <option value= "{{ $i }}">{{ $i }} 人</option>
+                    @endfor
+            </select>
+            <div class="confirmation__table">
+                <table>
+                    <tr>
+                        <th>Shop</th>
+                        <td>{{ $shop->shop_name }}</td>
+                    </tr>
+                    <tr>
+                        <th>Date</th>
+                        <td id="display_date"></td>
+                    </tr>
+                    <tr>
+                        <th>Time</th>
+                        <td id="display_time"></td>
+                    </tr>
+                    <tr>
+                        <th>人数</th>
+                        <td id="display_guests"></td>
+                    </tr>
+                </table>
+            </div>
             <button type="submit">予約する</button>
         </form>
-        <div class="confirmation__table">
-            <table>
-                <tr>
-                    <th>Shop</th>
-                    <td>{{ $shop->shop_name }}</td>
-                </tr>
-                <tr>
-                    <th>Date</th>
-                    <td id="display_date"></td>
-                </tr>
-                <tr>
-                    <th>Time</th>
-                    <td id="display_time"></td>
-                </tr>
-                <tr>
-                    <th>人数</th>
-                    <td id="display_guests"></td>
-                </tr>
-            </table>
-        </div>
     </div>
 </div>
 
 <script>
-document.getElementById('reserve_date').addEventListener('input', function() {
+    document.getElementById('reserve_date').addEventListener('input', function() {
     document.getElementById('display_date').innerText = this.value;
 });
 
