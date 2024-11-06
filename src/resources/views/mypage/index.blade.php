@@ -15,20 +15,20 @@
         <ul>
             @foreach ($reservations as $reservation)
             <li>
-                <h2>{{ $reservation->shop_name }}</h2>
-                <p>ジャンル: {{ $reservation->genre->genre_name }}</p>
-                <p>エリア: {{ $reservation->area->area_name }}</p>
-                <p>説明: {{ $reservation->description }}</p>
-                <img src="{{ asset($reservation->image_url) }}" alt="{{ $reservation->shop_name }}" class="shop__img">
+                <h3>{{ $reservation->shop->shop_name }}</h3>
+                <p>Date: {{ $reservation->reserve_date }} </p>
+                <p>Time:{{ \Carbon\Carbon::createFromFormat('H:i:s', $reservation->reserve_time)->format('H:i') }}</p>
+                <p>Number: {{ $reservation->guest_count }}人</p>
+                <img src="{{ $reservation->shop->image_url }}" alt="{{ $reservation->shop->name }}" class="shop__img">
             </li>
             @endforeach
         </ul>
     </div>
-    </div>
-    <div class="favorites__wrap">
-        <h2>お気に入り一覧</h2>
-        
-    </div>
+</div>
+<div class="favorites__wrap">
+    <h2>お気に入り一覧</h2>
+
+</div>
 </div>
 
 @endsection
