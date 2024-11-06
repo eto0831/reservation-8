@@ -60,4 +60,8 @@ class User extends Authenticatable implements MustVerifyEmail
         return $this->hasMany(review::class);
     }
 
+    public function getReservationsAttribute()
+    {
+        return $this->reservations()->with(['shop', 'shop.genre', 'shop.area'])->get();
+    }
 }
