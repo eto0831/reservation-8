@@ -24,11 +24,21 @@
             @endforeach
         </ul>
     </div>
-</div>
-<div class="favorites__wrap">
-    <h2>お気に入り一覧</h2>
-
-</div>
+    <div class="favorites__wrap">
+        <h2>お気に入り一覧</h2>
+        <ul>
+            @foreach($favorites as $favorite)
+            <li>
+                <h3>{{ $favorite->shop->shop_name }}</h3>
+                <p>
+                    <span> #{{ $favorite->shop->area->area_name}}</span>
+                    <span>#{{ $favorite->shop->genre->genre_name}}</span>
+                </p>
+                <img src="{{ $favorite->shop->image_url }}" alt="{{ $favorite->shop->shop_name }}" class="shop__img">
+            </li>
+            @endforeach
+        </ul>
+    </div>
 </div>
 
 @endsection

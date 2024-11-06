@@ -44,7 +44,7 @@
             <input type="date" name="reserve_date" id="reserve_date">
             <select name="reserve_time" id="reserve_time" required>
                 <option value="" disabled selected>時間を選択してください</option>
-                    @for ($hour = 10; $hour<= 22; $hour++)
+                    @for ($hour = 9; $hour<= 22; $hour++)
                         @foreach (['00', '15', '30', '45'] as $minute)
                             <option value="{{ sprintf('%02d:%02d', $hour, $minute) }}">
                                 {{ sprintf('%02d:%02d', $hour, $minute) }}

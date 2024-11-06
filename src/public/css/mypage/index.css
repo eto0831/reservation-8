@@ -4,13 +4,15 @@
 
 .mypage__content{
     display: flex;
+    justify-content: space-around; /* 追加 */
+    width: 100%;
 
 }
 
 .reservations__wrap{
-    width: 50%;
+    width: 40%;
 }
 
 .favorites__wrap{
-    width: 50%;
+    width: 40%;
 }

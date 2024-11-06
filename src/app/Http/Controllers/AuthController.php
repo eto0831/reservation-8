@@ -16,7 +16,7 @@ class AuthController extends Controller
         $reservations = auth()->user()->reservations()->with('shop')->get();
         $areas = Area::all();
         $genres = Genre::all();
-        $favorites = auth()->user()->favorites()->pluck('shop_id')->toArray();
+        $favorites = auth()->user()->favorites()->with(['shop.area', 'shop.genre'])->get();
         return view('mypage.index', compact('reservations', 'areas', 'genres','favorites'));
     }
 }
