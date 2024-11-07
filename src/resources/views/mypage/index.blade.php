@@ -8,7 +8,9 @@
 <div class="attendance__alert">
     // メッセージ機能
 </div>
-
+<div class="user__name">
+    <h2>{{ auth()->user()->name }}さん</h2>
+</div>
 <div class="mypage__content">
     <div class="reservations__wrap">
         <h2>予約一覧</h2>
