@@ -13,6 +13,17 @@
     width: 40%;
 }
 
+.reservation__heder{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.reservation__heder h3,
+.reservation__heder form {
+    width:45%;
+}
+
 .favorites__wrap{
     width: 40%;
 }

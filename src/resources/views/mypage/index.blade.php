@@ -15,14 +15,22 @@
         <ul>
             @foreach ($reservations as $reservation)
             <li>
-                <h3>{{ $reservation->shop->shop_name }}</h3>
+                <div class="reservation__heder">
+                    <h3>{{ $reservation->shop->shop_name }}</h3>
+                    <form action="/reservation" method="post">
+                        @csrf
+                        @method('DELETE')
+                        <input type="hidden" name="reservation_id" value="{{ $reservation->id}}">
+                        <button type="submit">×</button>
+                    </form>
+                </div>
                 <p>Date: {{ $reservation->reserve_date }} </p>
                 <p>Time: {{ \Carbon\Carbon::createFromFormat('H:i:s', $reservation->reserve_time)->format('H:i') }}</p>
                 <p>Number: {{ $reservation->guest_count }}人</p>
                 <img src="{{ $reservation->shop->image_url }}" alt="{{ $reservation->shop->name }}" class="shop__img">
                 <!-- お気に入り機能の追加 -->
                 @if ($reservation->shop->isFavorited)
-                <form action="/not-favorite" method="post">
+                <form action="/favorite" method="post">
                     @method('DELETE')
                     @csrf
                     <input type="hidden" name="shop_id" value="{{ $reservation->shop->id }}">
@@ -52,7 +60,7 @@
                 <img src="{{ $favorite->shop->image_url }}" alt="{{ $favorite->shop->shop_name }}" class="shop__img">
                 <!-- お気に入り機能の追加 -->
                 @if ($favorite->shop->isFavorited)
-                <form action="/not-favorite" method="post">
+                <form action="/favorite" method="post">
                     @method('DELETE')
                     @csrf
                     <input type="hidden" name="shop_id" value="{{ $favorite->shop->id }}">

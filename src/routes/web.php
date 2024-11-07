@@ -24,9 +24,10 @@ Route::get('/welcome', function () {
 Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('/', [ShopController::class, 'index']);
     Route::get('/detail/{shop_id}', [ShopController::class, 'detail']);
-    Route::post('/reserve', [ReservationController::class, 'store']);
+    Route::post('/reservation', [ReservationController::class, 'store']);
+    Route::delete('/reservation', [ReservationController::class, 'destroy']);
     Route::match(['get', 'post'], '/search', [ShopController::class, 'search']);
     Route::post('/favorite', [FavoriteController::class, 'store']);
-    Route::delete('/not-favorite', [FavoriteController::class, 'destroy']);
+    Route::delete('/favorite', [FavoriteController::class, 'destroy']);
     Route::get('/mypage', [AuthController::class, 'index']);
 });

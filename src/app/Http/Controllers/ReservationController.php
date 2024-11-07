@@ -22,4 +22,11 @@ class ReservationController extends Controller
 
         return redirect('/');
     }
+
+    public function destroy(Request $request)
+    {
+        auth()->user()->reservations()->where('id', $request->reservation_id)->delete();
+
+        return back()->with('error', '予約の削除に失敗しました');
+    }
 }

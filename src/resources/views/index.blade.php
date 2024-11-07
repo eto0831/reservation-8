@@ -50,7 +50,7 @@
             <img src="{{ asset($shop->image_url) }}" alt="{{ $shop->shop_name }}" class="shop__img">
             <a href="/detail/{{ $shop->id }}">詳しく見る</a>
             @if ($shop->isFavorited)
-            <form action="/not-favorite" method="post">
+            <form action="/favorite" method="post">
                 @method('DELETE')
                 @csrf
                 <input type="hidden" name="shop_id" value="{{ $shop['id'] }}">

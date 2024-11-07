@@ -20,7 +20,7 @@
                 <p>説明: {{ $shop->description }}</p>
                 <img src="{{ asset($shop->image_url) }}" alt="{{ $shop->shop_name }}" class="shop__img">
                 @if ($shop->isFavorited)
-                <form action="/not-favorite" method="post">
+                <form action="/favorite" method="post">
                     @method('DELETE')
                     @csrf
                     <input type="hidden" name="shop_id" value="{{ $shop->id }}">
@@ -38,7 +38,7 @@
     </div>
     <div class="reservation__form">
         <h1>予約</h1>
-        <form action="/reserve" method="post">
+        <form action="/reservation" method="post">
             @csrf
             <input type="hidden" name="shop_id" value="{{ $shop->id }}">
             <input type="date" name="reserve_date" id="reserve_date">
