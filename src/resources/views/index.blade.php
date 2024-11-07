@@ -1,7 +1,5 @@
 @extends('layouts.app')
 
-@use App\Models\Favorite;
-
 @section('css')
 <link rel="stylesheet" href="{{ asset('css/index.css') }}">
 @endsection
@@ -12,8 +10,6 @@
 </div>
 
 <div class="attendance__content">
-    <h1>店舗一覧</h1>
-
     <form class="search-form" action="/search" method="get">
         @csrf
         <div class="contact-search">
@@ -33,38 +29,42 @@
             </select>
         </div>
         <div class="name-search">
-            <input type="text" class="search-form__item-input" placeholder="名前やメールアドレスを入力してください" name="keyword"
+            <input type="text" class="search-form__item-input" placeholder="Search..." name="keyword"
                 value="{{ request('keyword') ?? old('keyword') }}">
         </div>
-        <div class="search-form__button">
+        {{-- <div class="search-form__button">
             <button class="search-form__button-submit" type="submit">検索</button>
-        </div>
+        </div> --}}
     </form>
-    <ul>
+    <div class="shop__wrap">
         @foreach ($shops as $shop)
-        <li>
-            <h2>{{ $shop->shop_name }}</h2>
-            <p>ジャンル: {{ $shop->genre->genre_name }}</p>
-            <p>エリア: {{ $shop->area->area_name }}</p>
-            <p>説明: {{ $shop->description }}</p>
+        <div class="shop__content">
             <img src="{{ asset($shop->image_url) }}" alt="{{ $shop->shop_name }}" class="shop__img">
-            <a href="/detail/{{ $shop->id }}">詳しく見る</a>
-            @if ($shop->isFavorited)
-            <form action="/favorite" method="post">
-                @method('DELETE')
-                @csrf
-                <input type="hidden" name="shop_id" value="{{ $shop['id'] }}">
-                <button type="submit">お気に入りから外す</button>
-            </form>
-            @else
-            <form action="/favorite" method="POST">
-                @csrf
-                <input type="hidden" name="shop_id" value="{{ $shop['id'] }}">
-                <button type="submit">お気に入り</button>
-            </form>
-            @endif
-        </li>
+            <h2>{{ $shop->shop_name }}</h2>
+            <p>
+                <span>#{{ $shop->area->area_name }}</span>
+                <span>#{{ $shop->genre->genre_name }}</span>
+            </p>
+            <div class="shop__buttons">
+                <a href="/detail/{{ $shop->id }}">詳しく見る</a>
+                @if ($shop->isFavorited)
+                <form action="/favorite" method="post">
+                    @method('DELETE')
+                    @csrf
+                    <input type="hidden" name="shop_id" value="{{ $shop['id'] }}">
+                    <button type="submit">お気に入りから外す</button>
+                </form>
+                @else
+                <form action="/favorite" method="POST">
+                    @csrf
+                    <input type="hidden" name="shop_id" value="{{ $shop['id'] }}">
+                    <button type="submit">お気に入り</button>
+                </form>
+                @endif
+            </div>
+        </div>
         @endforeach
-    </ul>
+
+    </div>
 </div>
 @endsection

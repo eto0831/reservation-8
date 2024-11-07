@@ -13,6 +13,10 @@
 
 }
 
+.shop__wrap {
+    width: 100%;
+}
+
 .reservations__wrap{
     width: 40%;
 }
