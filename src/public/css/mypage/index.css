@@ -35,14 +35,26 @@
     justify-content: space-between;
 }
 
+.reservation__container {
+    width:40%;
+}
+
+.reservation__container h2 {
+    text-align: center;
+}
+
 .reservations__wrap{
-    width: 40%;
+    width: 100%;
 }
 
 .reservation__heder{
     display: flex;
     justify-content: space-between;
     align-items: center;
+}
+
+.reservation__heder h2 {
+    text-align: center;
 }
 
 .reservation__heder h3,
