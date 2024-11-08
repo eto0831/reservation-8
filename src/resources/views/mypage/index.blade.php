@@ -21,7 +21,7 @@
                 @foreach ($reservations as $reservation)
                 <li>
                     <div class="reservation__heder">
-                        <h3>{{ $reservation->shop->shop_name }}</h3>
+                        <h3>予約 {{ $loop->iteration }}</h3>
                         <form action="/reservation" method="post">
                             @csrf
                             @method('DELETE')
@@ -29,6 +29,7 @@
                             <button type="submit">×</button>
                         </form>
                     </div>
+                    <h4>{{ $reservation->shop->shop_name }}</h4>
                     <p>Date: {{ $reservation->reserve_date }} </p>
                     <p>Time: {{ \Carbon\Carbon::createFromFormat('H:i:s', $reservation->reserve_time)->format('H:i') }}
                     </p>
