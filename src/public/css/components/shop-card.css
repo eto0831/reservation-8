@@ -1,0 +1,8 @@
+.shop__img {
+    width: 100%;
+}
+
+.shop__buttons {
+    display: flex;
+    justify-content: space-between;
+}
