@@ -15,12 +15,10 @@
 <div class="mypage__content">
     <div class="reservation__container">
         <h2>予約一覧</h2>
-
         <div class="reservations__wrap">
-            <ul>
                 @foreach ($reservations as $reservation)
-                <li>
-                    <div class="reservation__heder">
+                <div class="reservation__contents">
+                    <div class="reservation__header">
                         <h3>予約 {{ $loop->iteration }}</h3>
                         <form action="/reservation" method="post">
                             @csrf
@@ -34,9 +32,8 @@
                     <p>Time: {{ \Carbon\Carbon::createFromFormat('H:i:s', $reservation->reserve_time)->format('H:i') }}
                     </p>
                     <p>Number: {{ $reservation->guest_count }}人</p>
-                </li>
+                </div>
                 @endforeach
-            </ul>
         </div>
     </div>
     <div class="favorites__container">

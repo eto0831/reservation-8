@@ -1,16 +1,15 @@
-.shop__img{
+.shop__img {
     width: 300px;
 }
 
-.user__name{
+.user__name {
     text-align: center;
 }
 
-.mypage__content{
+.mypage__content {
     display: flex;
     justify-content: space-around; /* 追加 */
     width: 100%;
-
 }
 
 .shop__wrap {
@@ -36,18 +35,28 @@
 }
 
 .reservation__container {
-    width:40%;
+    width: 40%;
 }
 
 .reservation__container h2 {
     text-align: center;
 }
 
-.reservations__wrap{
-    width: 100%;
+.reservations__wrap {
+    display: flex;
+    justify-content: center; /* 水平方向の中央揃え */
+    align-items: center; /* 垂直方向の中央揃え */
+    flex-wrap: wrap; /* 複数行に折り返す */
+    gap: 20px;
 }
 
-.reservation__heder{
+.reservation__contents {
+    width: 80%;
+    background: rgb(14, 101, 177);
+    padding: 10px;
+    color: white;
+}
+.reservation__header {
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -59,7 +68,7 @@
 
 .reservation__heder h3,
 .reservation__heder form {
-    width:45%;
+    width: 45%;
 }
 
 .favorites__container {
