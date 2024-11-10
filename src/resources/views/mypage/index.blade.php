@@ -22,11 +22,8 @@
                     <h3>予約 {{ $loop->iteration }}</h3>
                     <div class="reservation__menus">
                         <form action="/reservation/edit/{{ $reservation->id }}" class="reservation__edit" method="get">
-                            @csrf
-                            @method('GET')
                             <input type="hidden" name="reservation_id" value="{{ $reservation->id }}">
                             <button type="submit">目</button>
-
                         </form>
                         <form action="/reservation" method="post">
                             @csrf
