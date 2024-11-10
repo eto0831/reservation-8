@@ -38,8 +38,10 @@
     </div>
     <div class="reservation__form">
         <h1>予約</h1>
-        <form action="/reservation" method="post">
+        <form action="/reservation/update" method="post">
             @csrf
+            @method('PATCH')
+            <input type="hidden" name="reservation_id" value="{{ $reservation->id }}">
             <input type="hidden" name="shop_id" value="{{ $shop->id }}">
             <input type="date" name="reserve_date" id="reserve_date" value="{{ $reservation->reserve_date }}">
             <select name="reserve_time" id="reserve_time" required>

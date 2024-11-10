@@ -1,0 +1,12 @@
+.shop__img{
+    width: 300px;
+}
+
+.detail__content{
+    display: flex;
+
+}
+
+.detail__wrap{
+    width: 50%;
+}
