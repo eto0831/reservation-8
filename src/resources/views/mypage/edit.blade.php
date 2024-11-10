@@ -47,16 +47,18 @@
                     @for ($hour = 9; $hour<= 22; $hour++)
                         @foreach (['00', '15', '30', '45'] as $minute)
                             <option value="{{ sprintf('%02d:%02d', $hour, $minute) }}"
-                                @if ($reservation->reserve_time == sprintf('%02d:%02d:00', $hour, $minute)) selected @endif>
+                                @if (\Carbon\Carbon::createFromFormat('H:i:s', $reservation->reserve_time)->format('H:i') == sprintf('%02d:%02d', $hour, $minute)) selected @endif>
                                 {{ sprintf('%02d:%02d', $hour, $minute) }}
                             </option>
                         @endforeach
                     @endfor
             </select>
             <select name="guest_count" id="guest_count">
-                <option value="" disabled selected>人数を選択してください</option>
+                <option value="" disabled>人数を選択してください</option>
                     @for ($i = 1; $i <= 10; $i++)
-                        <option value= "{{ $i }}">{{ $i }} 人</option>
+                        <option value= "{{ $i }}"
+                            @if ($reservation->guest_count == $i) selected @endif>
+                            {{ $i }}人</option>
                     @endfor
             </select>
             <div class="confirmation__table">
@@ -79,7 +81,7 @@
                     </tr>
                 </table>
             </div>
-            <button type="submit">予約する</button>
+            <button type="submit">変更を確定する</button>
         </form>
     </div>
 </div>
@@ -95,6 +97,13 @@ document.getElementById('reserve_time').addEventListener('input', function() {
 
 document.getElementById('guest_count').addEventListener('input', function() {
     document.getElementById('display_guests').innerText = this.value;
+});
+
+// 初期表示時の処理
+document.addEventListener('DOMContentLoaded', function() {
+    document.getElementById('display_date').innerText = document.getElementById('reserve_date').value;
+    document.getElementById('display_time').innerText = document.getElementById('reserve_time').value;
+    document.getElementById('display_guests').innerText = document.getElementById('guest_count').value;
 });
 </script>
 @endsection
