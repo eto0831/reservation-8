@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Reservation;
 use App\Models\Shop;
+use App\Models\Genre;
+use App\Models\Area;
 use App\Models\User;
 
 class ReservationController extends Controller
@@ -29,4 +31,16 @@ class ReservationController extends Controller
 
         return back()->with('error', '予約の削除に失敗しました');
     }
+
+    public function edit(Request $request)
+{
+    $reservationId = $request->input('reservation_id');
+    $reservation = Reservation::find($reservationId);
+
+    // $shop 変数を定義
+    $shop = $reservation->shop;
+
+    return view('mypage.edit', compact('reservation', 'shop'));
+}
+
 }

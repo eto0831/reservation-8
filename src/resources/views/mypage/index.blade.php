@@ -16,10 +16,18 @@
     <div class="reservation__container">
         <h2>予約一覧</h2>
         <div class="reservations__wrap">
-                @foreach ($reservations as $reservation)
-                <div class="reservation__contents">
-                    <div class="reservation__header">
-                        <h3>予約 {{ $loop->iteration }}</h3>
+            @foreach ($reservations as $reservation)
+            <div class="reservation__contents">
+                <div class="reservation__header">
+                    <h3>予約 {{ $loop->iteration }}</h3>
+                    <div class="reservation__menus">
+                        <form action="/reservation/edit" class="reservation__edit" method="get">
+                            @csrf
+                            @method('GET')
+                            <input type="hidden" name="reservation_id" value="{{ $reservation->id }}">
+                            <button type="submit">目</button>
+
+                        </form>
                         <form action="/reservation" method="post">
                             @csrf
                             @method('DELETE')
@@ -27,13 +35,14 @@
                             <button type="submit">×</button>
                         </form>
                     </div>
-                    <h4>{{ $reservation->shop->shop_name }}</h4>
-                    <p>Date: {{ $reservation->reserve_date }} </p>
-                    <p>Time: {{ \Carbon\Carbon::createFromFormat('H:i:s', $reservation->reserve_time)->format('H:i') }}
-                    </p>
-                    <p>Number: {{ $reservation->guest_count }}人</p>
                 </div>
-                @endforeach
+                <h4>{{ $reservation->shop->shop_name }}</h4>
+                <p>Date: {{ $reservation->reserve_date }} </p>
+                <p>Time: {{ \Carbon\Carbon::createFromFormat('H:i:s', $reservation->reserve_time)->format('H:i') }}
+                </p>
+                <p>Number: {{ $reservation->guest_count }}人</p>
+            </div>
+            @endforeach
         </div>
     </div>
     <div class="favorites__container">
