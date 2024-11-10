@@ -30,6 +30,8 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::post('/favorite', [FavoriteController::class, 'store']);
     Route::delete('/favorite', [FavoriteController::class, 'destroy']);
     Route::get('/mypage', [AuthController::class, 'index']);
-    Route::get('/reservation/edit', [ReservationController::class, 'edit']);
-    Route::patch('/reservation/update', [ReservationController::class, 'update']);
+    // 予約編集のルート
+    Route::get('/reservation/edit/{id}', [ReservationController::class, 'edit'])->name('reservation.edit');
+    // 予約更新のルート
+    Route::patch('/reservation/update', [ReservationController::class, 'update'])->name('reservation.update');
 });

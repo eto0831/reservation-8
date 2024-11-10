@@ -32,26 +32,19 @@ class ReservationController extends Controller
         return back()->with('error', '予約の削除に失敗しました');
     }
 
-    public function edit(Request $request)
-    {
-        $reservationId = $request->input('reservation_id');
-        $reservation = Reservation::find($reservationId);
+    public function edit($id)
+{
+    $reservation = Reservation::find($id);
+    $shop = $reservation->shop;
 
-        // $shop 変数を定義
-        $shop = $reservation->shop;
+    return view('mypage.edit', compact('reservation', 'shop'));
+}
 
-        return view('mypage.edit', compact('reservation', 'shop'));
-    }
 
     public function update(Request $request)
     {
-        $reservation = [
-            'user_id' => auth()->user()->id, // ログイン中のユーザーID
-            'shop_id' => $request->shop_id, // リクエストから取得した店舗ID
-            'reserve_date' => $request->reserve_date, // リクエストから取得した予約日
-            'reserve_time' => $request->reserve_time, // リクエストから取得した予約時間
-            'guest_count' => $request->guest_count, // リクエストから取得した来店人数
-        ];
+        $reservation =  $request->all();
+        unset($reservation['_token']);
         Reservation::find($request->input('reservation_id'))->update($reservation);
 
         return redirect('/mypage');

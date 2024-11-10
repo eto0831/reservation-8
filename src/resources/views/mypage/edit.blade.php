@@ -38,7 +38,7 @@
     </div>
     <div class="reservation__form">
         <h1>予約</h1>
-        <form action="/reservation/update" method="post">
+        <form action="{{ route('reservation.update') }}" method="post">
             @csrf
             @method('PATCH')
             <input type="hidden" name="reservation_id" value="{{ $reservation->id }}">
