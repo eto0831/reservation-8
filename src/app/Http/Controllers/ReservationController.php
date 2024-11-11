@@ -41,7 +41,6 @@ class ReservationController extends Controller
     return view('mypage.edit', compact('reservation', 'shop'));
 }
 
-
     public function update(Request $request)
     {
         $reservation =  $request->all();
@@ -49,4 +48,31 @@ class ReservationController extends Controller
 
         return redirect('/mypage');
     }
+
+    public function verify($id)
+    {
+        $reservation = Reservation::find($id);
+        if ($reservation) {
+            return view('admin.verify', compact('reservation'));
+        } else {
+            return redirect()->back()->with('error', '予約が見つかりませんでした');
+        }
+    }
+
+    public function updateIsVisited(Request $request, $id)
+    {
+        $reservation = Reservation::find($id);
+        if ($reservation) {
+            $reservation->is_visited = true;
+            $reservation->save();
+            return redirect()->back()->with('success', '来店が確認されました');
+        } else {
+            return redirect()->back()->with('error', '予約が見つかりませんでした');
+        }
+    }
 }
+
+
+
+
+

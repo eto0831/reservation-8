@@ -34,4 +34,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('/reservation/edit/{id}', [ReservationController::class, 'edit'])->name('reservation.edit');
     // 予約更新のルート
     Route::patch('/reservation/update', [ReservationController::class, 'update'])->name('reservation.update');
+    Route::get('/reservation/verify/{id}', [ReservationController::class, 'verify'])->name('reservation.verify');
+    Route::post('/reservation/verify/{id}', [ReservationController::class, 'updateIsVisited'])->name('reservation.updateIsVisited');
+
 });
