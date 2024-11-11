@@ -44,7 +44,6 @@ class ReservationController extends Controller
     public function update(Request $request)
     {
         $reservation =  $request->all();
-        unset($reservation['_token']);
         Reservation::find($request->input('reservation_id'))->update($reservation);
 
         return redirect('/mypage');
