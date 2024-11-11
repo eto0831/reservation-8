@@ -42,5 +42,6 @@
             @include('components.shop-card', ['shop' => $shop])
         @endforeach
     </div>
+    {{ $shops->withQueryString()->links('vendor.pagination.custom') }}
 </div>
 @endsection

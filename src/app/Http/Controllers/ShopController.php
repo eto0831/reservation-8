@@ -12,7 +12,7 @@ class ShopController extends Controller
 {
     public function index()
     {
-        $shops = Shop::with(['genre', 'area'])->get();
+        $shops = Shop::with(['genre', 'area'])->paginate(4);
         $areas = Area::all(); // エリア情報を取得
         $genres = Genre::all(); // ジャンル情報を取得
         $favorites = auth()->user()->favorites()->pluck('shop_id')->toArray();
@@ -21,7 +21,7 @@ class ShopController extends Controller
 
     public function search(Request $request)
     {
-        $shops = Shop::with(['genre', 'area'])->GenreSearch($request->genre_id)->AreaSearch($request->area_id)->KeywordSearch($request->keyword)->paginate(20);
+        $shops = Shop::with(['genre', 'area'])->GenreSearch($request->genre_id)->AreaSearch($request->area_id)->KeywordSearch($request->keyword)->paginate(4);
         $areas = Area::all();
         $genres = Genre::all();
         $favorites = auth()->user()->favorites()->pluck('shop_id')->toArray();
