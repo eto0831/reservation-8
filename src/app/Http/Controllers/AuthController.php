@@ -8,6 +8,7 @@ use App\Models\Genre;
 use App\Models\Area;
 use App\Models\Reservation;
 use Carbon\Carbon;
+use SimpleSoftwareIO\QrCode\Facades\QrCode;
 
 class AuthController extends Controller
 {

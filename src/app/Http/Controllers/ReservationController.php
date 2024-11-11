@@ -8,6 +8,7 @@ use App\Models\Shop;
 use App\Models\Genre;
 use App\Models\Area;
 use App\Models\User;
+use SimpleSoftwareIO\QrCode\Facades\QrCode;
 
 class ReservationController extends Controller
 {

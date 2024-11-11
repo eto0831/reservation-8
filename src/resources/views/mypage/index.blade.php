@@ -38,6 +38,9 @@
                 <p>Time: {{ \Carbon\Carbon::createFromFormat('H:i:s', $reservation->reserve_time)->format('H:i') }}
                 </p>
                 <p>Number: {{ $reservation->guest_count }}人</p>
+                <div class="qr-code">
+                    {!! QrCode::size(150)->generate(url('/reservation/verify/' . $reservation->id)) !!}
+                </div>
             </div>
             @endforeach
         </div>
