@@ -35,7 +35,7 @@ class ShopController extends Controller
         $areas = Area::all();
         $genres = Genre::all();
         $favorites = auth()->user()->favorites()->pluck('shop_id')->toArray();
-        $reviews = Review::with(['shop', 'user'])->get();
+        $reviews = Review::where('shop_id', $shop->id)->with(['shop', 'user'])->get();
         return view('detail', compact('shop', 'areas', 'genres','reviews'));
     }
 }
