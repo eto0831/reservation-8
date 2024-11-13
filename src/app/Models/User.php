@@ -59,6 +59,12 @@ class User extends Authenticatable implements MustVerifyEmail
     {
         return $this->hasMany(review::class);
     }
+
+    public function isVisited($shopId)
+    {
+        return $this->reservations()->where('shop_id', $shopId)->where('is_visited', true)->exists();
+    }
+
     // 現状下記は機能させていない。
     // public function getReservationsAttribute()
     // {

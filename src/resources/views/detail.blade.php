@@ -35,6 +35,11 @@
                 @endif
             </li>
         </ul>
+        @if (Auth::check() && Auth::user()->isVisited($shop->id))
+    <p>この店舗は訪問済みです。</p>
+@else
+    <p>この店舗はまだ訪問していません。</p>
+@endif
     </div>
     <div class="reservation__form">
         <h1>予約</h1>
