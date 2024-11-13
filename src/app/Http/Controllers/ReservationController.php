@@ -34,12 +34,12 @@ class ReservationController extends Controller
     }
 
     public function edit($id)
-{
-    $reservation = Reservation::find($id);
-    $shop = $reservation->shop;
+    {
+        $reservation = Reservation::find($id);
+        $shop = $reservation->shop;
 
-    return view('mypage.edit', compact('reservation', 'shop'));
-}
+        return view('mypage.edit', compact('reservation', 'shop'));
+    }
 
     public function update(Request $request)
     {
@@ -47,6 +47,11 @@ class ReservationController extends Controller
         Reservation::find($request->input('reservation_id'))->update($reservation);
 
         return redirect('/mypage');
+    }
+
+    public function scan()
+    {
+        return view('admin.scan');
     }
 
     public function verify($id)
@@ -71,8 +76,3 @@ class ReservationController extends Controller
         }
     }
 }
-
-
-
-
-
