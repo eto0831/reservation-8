@@ -6,9 +6,11 @@ use Illuminate\Http\Request;
 use App\Models\Shop;
 use App\Models\Genre;
 use App\Models\Area;
+use App\Models\Review;
 use App\Models\Reservation;
 use Carbon\Carbon;
 use SimpleSoftwareIO\QrCode\Facades\QrCode;
+
 
 class AuthController extends Controller
 {

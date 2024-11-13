@@ -7,6 +7,7 @@ use App\Models\Shop;
 use App\Models\Area;
 use App\Models\Genre;
 use App\Models\Favorite;
+use App\Models\Review;
 
 class ShopController extends Controller
 {
@@ -34,6 +35,7 @@ class ShopController extends Controller
         $areas = Area::all();
         $genres = Genre::all();
         $favorites = auth()->user()->favorites()->pluck('shop_id')->toArray();
-        return view('detail', compact('shop', 'areas', 'genres'));
+        $reviews = Review::with(['shop', 'user'])->get();
+        return view('detail', compact('shop', 'areas', 'genres','reviews'));
     }
 }
