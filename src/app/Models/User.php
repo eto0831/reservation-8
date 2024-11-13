@@ -62,7 +62,16 @@ class User extends Authenticatable implements MustVerifyEmail
 
     public function isVisited($shopId)
     {
-        return $this->reservations()->where('shop_id', $shopId)->where('is_visited', true)->exists();
+        $reservation = $this->reservations()
+                            ->where('shop_id', $shopId)
+                            ->where('is_visited', true)
+                            ->first(); // 該当する予約を取得
+
+        if ($reservation) {
+            return $reservation->id; // reservation_id を返す
+        }
+
+        return null; // 該当する予約がない場合は null を返す
     }
 
     // 現状下記は機能させていない。

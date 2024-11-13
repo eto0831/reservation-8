@@ -35,8 +35,22 @@
                 @endif
             </li>
         </ul>
-        @if (Auth::check() && Auth::user()->isVisited($shop->id))
+        @if (Auth::check() && $reservationId = Auth::user()->isVisited($shop->id))
     <p>この店舗は訪問済みです。</p>
+    <form action="/review" method="post">
+        @csrf
+        <input type="hidden" name="shop_id" value="{{ $shop->id }}">
+        <input type="hidden" name="user_id">
+        <input type="hidden" name="reservation_id" value="{{ $reservationId }}">
+        <select name="rating" id="rating">
+            @for ($i = 1; $i <=5; $i++)
+                <option value="{{ $i }}">{{ $i }}</option>
+            @endfor
+        </select>
+        <input type="text" name="comment" value="">
+        <button type="submit">投稿</button>
+    </form>
+
 @else
     <p>この店舗はまだ訪問していません。</p>
 @endif

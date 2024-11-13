@@ -5,6 +5,7 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\ShopController;
 use App\Http\Controllers\FavoriteController;
 use App\Http\Controllers\ReservationController;
+use App\Http\Controllers\ReviewController;
 
 
 /*
@@ -38,5 +39,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('/reservation/scan', [ReservationController::class, 'scan'])->name('reservation.scan');
     Route::get('/reservation/verify/{id}', [ReservationController::class, 'verify'])->name('reservation.verify');
     Route::post('/reservation/verify/{id}', [ReservationController::class, 'updateIsVisited'])->name('reservation.updateIsVisited');
+
+    Route::post('/review', [ReviewController::class, 'store']);
 
 });
