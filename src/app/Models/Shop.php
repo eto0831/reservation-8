@@ -65,4 +65,12 @@ class Shop extends Model
         }
         return false;
     }
+
+    // Shop.php
+
+    public function hasReviewed(int $userId)
+    {
+        return $this->reviews()->where('user_id', $userId)->exists();
+    }
+
 }

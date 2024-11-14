@@ -24,7 +24,7 @@ Route::get('/welcome', function () {
 });
 Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('/', [ShopController::class, 'index']);
-    Route::get('/detail/{shop_id}', [ShopController::class, 'detail']);
+    Route::get('/detail/{shop_id}', [ShopController::class, 'detail'])->name('detail');;
     Route::post('/reservation', [ReservationController::class, 'store']);
     Route::delete('/reservation', [ReservationController::class, 'destroy']);
     Route::match(['get', 'post'], '/search', [ShopController::class, 'search']);
@@ -42,5 +42,6 @@ Route::middleware(['auth', 'verified'])->group(function () {
 
     Route::post('/review', [ReviewController::class, 'store']);
     Route::delete('/review/delete', [ReviewController::class, 'destroy']);
-
+    Route::get('/review/{review}/edit', [ReviewController::class, 'edit'])->name('review.edit');
+    Route::put('/review/update/{review}', [ReviewController::class, 'update'])->name('review.update');
 });

@@ -35,8 +35,12 @@
                 @endif
             </li>
         </ul>
+        // detail.blade.php
+
         @if (Auth::check() && $reservationId = Auth::user()->isVisited($shop->id))
         <p>この店舗は訪問済みです。</p>
+
+        @if (!$shop->hasReviewed(Auth::user()->id)) // レビュー済みかどうかをチェック
         <form action="/review" method="post">
             @csrf
             <input type="hidden" name="shop_id" value="{{ $shop->id }}">
@@ -49,19 +53,27 @@
             <input type="text" name="comment" value="">
             <button type="submit">投稿</button>
         </form>
-        <form action="/review/delete" method="post">
-            <input type="hidden" name="shop_id" value="shop_id">
-            @csrf
-            @method('DELETE')
-            <button>×</button>
-        </form>
+        @endif
 
         @else
         <p>この店舗はまだ訪問していません。</p>
         @endif
         <h4>レビュー一覧</h4>
         @foreach($reviews as $review)
-            <li>{{ $review->comment }} by {{$review->user->name}}</li>
+        <li>
+            {{ $review->comment }} by {{$review->user->name}}
+            @if (Auth::check() && $review->user_id === Auth::user()->id)
+            <div>
+                <a href="{{ route('review.edit', $review->id) }}">編集</a>
+                <form action="/review/delete" method="post">
+                    @csrf
+                    @method('DELETE')
+                    <input type="hidden" name="shop_id" value="{{ $shop->id }}">
+                    <button type="submit">削除</button>
+                </form>
+            </div>
+            @endif
+        </li>
         @endforeach
     </div>
     <div class="reservation__form">

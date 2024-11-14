@@ -44,4 +44,37 @@ class ReviewController extends Controller
             return back()->with('error', '投稿の削除に失敗しました');
         }
     }
+
+    // ReviewController.php
+
+    public function edit(Review $review)
+    {
+        // ログインユーザーがレビューの作者かどうかを確認
+        if ($review->user_id !== auth()->id()) {
+            abort(403); // 権限がない場合はアクセスを拒否
+        }
+        return view('review.edit', compact('review'));
+    }
+
+    public function update(Request $request, Review $review)
+    {
+
+        // ログインユーザーがレビューの作者かどうかを確認
+        if ($review->user_id !== auth()->id()) {
+            abort(403); // 権限がない場合はアクセスを拒否
+        }
+
+        $request->validate([
+            'rating' => 'required|integer|between:1,5',
+            'comment' => 'required|string',
+        ]);
+
+        $review->update([
+            'rating' => $request->rating,
+            'comment' => $request->comment,
+        ]);
+
+        return redirect()->route('detail', ['shop_id' => $review->shop_id])
+            ->with('status', 'レビューを更新しました');
+    }
 }
