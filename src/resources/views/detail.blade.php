@@ -35,33 +35,34 @@
                 @endif
             </li>
         </ul>
-        // detail.blade.php
+        {{-- detail.blade.php --}}
 
         @if (Auth::check() && $reservationId = Auth::user()->isVisited($shop->id))
         <p>この店舗は訪問済みです。</p>
-
-        @if (!$shop->hasReviewed(Auth::user()->id)) // レビュー済みかどうかをチェック
-        <form action="/review" method="post">
-            @csrf
-            <input type="hidden" name="shop_id" value="{{ $shop->id }}">
-            <input type="hidden" name="user_id">
-            <input type="hidden" name="reservation_id" value="{{ $reservationId }}">
-            <select name="rating" id="rating">
-                @for ($i = 1; $i <=5; $i++) <option value="{{ $i }}">{{ $i }}</option>
-                    @endfor
-            </select>
-            <input type="text" name="comment" value="">
-            <button type="submit">投稿</button>
-        </form>
-        @endif
+        
+            {{-- レビュー済みかどうかをチェック --}}
+            @if (!$shop->hasReviewed(Auth::user()->id))
+            <form action="/review" method="post">
+                @csrf
+                <input type="hidden" name="shop_id" value="{{ $shop->id }}">
+                <input type="hidden" name="user_id">
+                <input type="hidden" name="reservation_id" value="{{ $reservationId }}">
+                <select name="rating" id="rating">
+                    @for ($i = 1; $i <=5; $i++) <option value="{{ $i }}">{{ $i }}</option>
+                        @endfor
+                </select>
+                <input type="text" name="comment" value="">
+                <button type="submit">投稿</button>
+            </form>
+            @endif
 
         @else
-        <p>この店舗はまだ訪問していません。</p>
+            <p>この店舗はまだ訪問していません。</p>
         @endif
         <h4>レビュー一覧</h4>
         @foreach($reviews as $review)
         <li>
-            {{ $review->comment }} by {{$review->user->name}}
+            評価：{{ $review->rating }} コメント：{{ $review->comment }} by {{$review->user->name}}
             @if (Auth::check() && $review->user_id === Auth::user()->id)
             <div>
                 <a href="{{ route('review.edit', $review->id) }}">編集</a>
