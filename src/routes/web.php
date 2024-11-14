@@ -41,5 +41,6 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::post('/reservation/verify/{id}', [ReservationController::class, 'updateIsVisited'])->name('reservation.updateIsVisited');
 
     Route::post('/review', [ReviewController::class, 'store']);
+    Route::delete('/review/delete', [ReviewController::class, 'destroy']);
 
 });

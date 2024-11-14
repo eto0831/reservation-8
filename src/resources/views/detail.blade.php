@@ -6,7 +6,7 @@
 
 @section('content')
 <div class="attendance__alert">
-    // メッセージ機能
+    {{ session('status') }}
 </div>
 
 <div class="detail__content">
@@ -48,6 +48,12 @@
             </select>
             <input type="text" name="comment" value="">
             <button type="submit">投稿</button>
+        </form>
+        <form action="/review/delete" method="post">
+            <input type="hidden" name="shop_id" value="shop_id">
+            @csrf
+            @method('DELETE')
+            <button>×</button>
         </form>
 
         @else
