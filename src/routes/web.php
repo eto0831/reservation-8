@@ -6,6 +6,7 @@ use App\Http\Controllers\ShopController;
 use App\Http\Controllers\FavoriteController;
 use App\Http\Controllers\ReservationController;
 use App\Http\Controllers\ReviewController;
+use App\Http\Controllers\PaymentController;
 
 
 /*
@@ -44,4 +45,9 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::delete('/review/delete', [ReviewController::class, 'destroy']);
     Route::get('/review/{review}/edit', [ReviewController::class, 'edit'])->name('review.edit');
     Route::put('/review/update/{review}', [ReviewController::class, 'update'])->name('review.update');
+
+    Route::get('/payment', [PaymentController::class, 'index'])->name('payment.index');
+    Route::post('/payment', [PaymentController::class, 'processPayment'])->name('payment.process');
+
+
 });
