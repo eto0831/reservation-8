@@ -2,6 +2,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Stripe\Stripe;
 
 class PaymentController extends Controller
 {
@@ -19,7 +20,8 @@ class PaymentController extends Controller
         $user = $request->user();
         $user->createOrGetStripeCustomer();
         $user->addPaymentMethod($request->payment_method);
-        $user->charge(1000, $request->payment_method); // 1000 JPY = 10.00 USD
+        $user->charge(1000, $request->payment_method, ['currency' => 'jpy']);
+ // 1000 JPY = 10.00 USD
 
         return back()->with('status', '決済が完了しました！');
     }
