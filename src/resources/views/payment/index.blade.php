@@ -21,9 +21,9 @@
                     <div>
                         <label for="course">コース選択</label>
                         <select id="course" name="course" class="form-control" required>
-                            <option value="10000">松 - 10000円</option>
-                            <option value="8000">竹 - 8000円</option>
-                            <option value="5000">梅 - 5000円</option>
+                            <option value="matsu">松 - 10000円</option>
+                            <option value="take">竹 - 8000円</option>
+                            <option value="ume">梅 - 5000円</option>
                         </select>
                     </div>
                     <div>

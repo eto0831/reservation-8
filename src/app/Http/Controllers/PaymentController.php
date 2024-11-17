@@ -18,21 +18,35 @@ class PaymentController extends Controller
         Stripe::setApiKey(config('cashier.secret'));
 
         $request->validate([
-            'course' => 'required|integer',
-            'guests' => 'required|integer|min:1',
+            'course' => 'required|string|in:matsu,take,ume',
+            'guests' => 'required|integer|min:1|max:20', // 適切な最大人数を設定
             'payment_method' => 'required|string',
         ]);
 
-        $coursePrice = $request->input('course');
+        // サーバー側でコースの価格を定義
+        $coursePrices = [
+            'matsu' => 10000,
+            'take' => 8000,
+            'ume' => 5000,
+        ];
+
+        $courseKey = $request->input('course');
+
+        // コースキーが有効かチェック
+        if (!array_key_exists($courseKey, $coursePrices)) {
+            return back()->with('error', '不正なコースが選択されました。');
+        }
+
+        $coursePrice = $coursePrices[$courseKey];
         $guestCount = $request->input('guests');
-        $amount = $coursePrice * $guestCount; // 合計金額の計算
+        $amount = $coursePrice * $guestCount;
 
         try {
             $user = $request->user();
             $user->createOrGetStripeCustomer();
             $user->addPaymentMethod($request->payment_method);
 
-            // チャージの実行
+            // 決済の実行
             \Stripe\PaymentIntent::create([
                 'amount' => $amount,
                 'currency' => 'jpy',
