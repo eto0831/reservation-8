@@ -7,7 +7,7 @@
 
 @section('content')
 <div class="attendance__alert">
-    // メッセージ機能
+    {{ session('status') }}
 </div>
 <div class="user__name">
     <h2>{{ auth()->user()->name }}さん</h2>

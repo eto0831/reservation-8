@@ -50,4 +50,5 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::post('/payment', [PaymentController::class, 'processPayment'])->name('payment.process');
 
 
+    Route::post('/reservation/process', [ReservationController::class, 'process'])->name('reservation.process');
 });

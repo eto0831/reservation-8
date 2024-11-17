@@ -16,6 +16,12 @@
         <div class="col-6 card">
             <div class="card-header">Stripe決済</div>
             <div class="card-body">
+                <h3>予約内容</h3>
+                <p><strong>店舗名:</strong> {{ $shop->shop_name }}</p>
+                <p><strong>日付:</strong> {{ $reservationData['reserve_date'] }}</p>
+                <p><strong>時間:</strong> {{ $reservationData['reserve_time'] }}</p>
+                <p><strong>人数:</strong> {{ $reservationData['guest_count'] }} 人</p>
+
                 <form id="payment-form" action="{{ route('payment.process') }}" method="POST">
                     @csrf
                     <div>
@@ -25,10 +31,6 @@
                             <option value="take">竹 - 8000円</option>
                             <option value="ume">梅 - 5000円</option>
                         </select>
-                    </div>
-                    <div>
-                        <label for="guests">予約人数</label>
-                        <input type="number" id="guests" name="guests" class="form-control" required>
                     </div>
                     <div>
                         <label for="card-element">クレジットカード情報</label>
@@ -43,6 +45,7 @@
     </div>
 </div>
 
+<!-- Stripe.jsとJavaScriptのコードを追加 -->
 <script src="https://js.stripe.com/v3/"></script>
 <script>
     const stripe = Stripe('{{ config('cashier.key') }}');
