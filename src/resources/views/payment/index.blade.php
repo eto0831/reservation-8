@@ -7,12 +7,29 @@
             {{ session('status') }}
         </div>
     @endif
+    @if (session('error'))
+        <div class="alert alert-danger">
+            {{ session('error') }}
+        </div>
+    @endif
     <div class="p-5">
         <div class="col-6 card">
             <div class="card-header">Stripe決済</div>
             <div class="card-body">
                 <form id="payment-form" action="{{ route('payment.process') }}" method="POST">
                     @csrf
+                    <div>
+                        <label for="course">コース選択</label>
+                        <select id="course" name="course" class="form-control" required>
+                            <option value="10000">松 - 10000円</option>
+                            <option value="8000">竹 - 8000円</option>
+                            <option value="5000">梅 - 5000円</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label for="guests">予約人数</label>
+                        <input type="number" id="guests" name="guests" class="form-control" required>
+                    </div>
                     <div>
                         <label for="card-element">クレジットカード情報</label>
                         <div id="card-element" class="form-control"></div>
