@@ -3,6 +3,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Stripe\Stripe;
+use Stripe\PaymentIntent;
 use Stripe\Exception\ApiErrorException;
 
 class PaymentController extends Controller
@@ -47,7 +48,7 @@ class PaymentController extends Controller
             $user->addPaymentMethod($request->payment_method);
 
             // 決済の実行
-            \Stripe\PaymentIntent::create([
+            PaymentIntent::create([
                 'amount' => $amount,
                 'currency' => 'jpy',
                 'customer' => $user->stripe_id,
