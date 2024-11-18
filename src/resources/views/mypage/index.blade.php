@@ -21,6 +21,13 @@
                 <div class="reservation__header">
                     <h3>予約 {{ $loop->iteration }}</h3>
                     <div class="reservation__menus">
+                        <button popovertarget="Modal{{ $reservation->id }}" popovertargetaction="show">QR</button>
+                        <div popover id="Modal{{ $reservation->id }}">
+                            <div class="qr-code">
+                                {!! QrCode::size(150)->generate(url('/reservation/verify/' . $reservation->id)) !!}
+                            </div>
+                            <button popovertarget="Modal{{ $reservation->id }}" popovertargetaction="hidden">閉じる</button>
+                        </div>
                         <form action="/reservation/edit/{{ $reservation->id }}" class="reservation__edit" method="get">
                             <input type="hidden" name="reservation_id" value="{{ $reservation->id }}">
                             <button type="submit">目</button>
@@ -38,9 +45,6 @@
                 <p>Time: {{ \Carbon\Carbon::createFromFormat('H:i:s', $reservation->reserve_time)->format('H:i') }}
                 </p>
                 <p>Number: {{ $reservation->guest_count }}人</p>
-                <div class="qr-code">
-                    {!! QrCode::size(150)->generate(url('/reservation/verify/' . $reservation->id)) !!}
-                </div>
             </div>
             @endforeach
         </div>
