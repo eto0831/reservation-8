@@ -50,26 +50,24 @@ class ReservationController extends Controller
     }
 
     public function scan()
-    {
-        $message = session('error') ?? null; // エラーメッセージをセッションから取得
-        return view('admin.scan', compact('message'));
+{
+    return view('admin.scan');
+}
+
+public function verify($id = null)
+{
+    if (!$id || !is_numeric($id)) {
+        return redirect()->route('reservation.scan')->with('error', '無効なQRコードが読み取られました。');
     }
 
-    public function verify($id = null)
-    {
-        if (!$id || !is_numeric($id)) {
-            return redirect()->route('reservation.scan')->with('error', '無効なQRコードが読み取られました。');
-        }
+    $reservation = Reservation::find($id);
 
-        $reservation = Reservation::find($id);
-
-        if ($reservation) {
-            return view('admin.verify', compact('reservation'));
-        } else {
-            return redirect()->route('reservation.scan')->with('error', '予約が見つかりませんでした。');
-        }
+    if ($reservation) {
+        return view('admin.verify', compact('reservation'));
+    } else {
+        return redirect()->route('reservation.scan')->with('error', '予約が見つかりませんでした。');
     }
-
+}
 
     public function updateIsVisited(Request $request, $id)
     {

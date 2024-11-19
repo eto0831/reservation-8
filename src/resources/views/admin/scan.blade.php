@@ -3,15 +3,10 @@
 @section('content')
 <div class="scan-qrcode">
     <h2>QRコードを読み込んでください</h2>
-    {{-- メッセージを表示 --}}
     @if(session('error'))
-        <div class="alert alert-danger">
-            {{ session('error') }}
-        </div>
-    @elseif(isset($message))
-        <div class="alert alert-danger">
-            {{ $message }}
-        </div>
+    <div class="alert alert-danger">
+        {{ session('error') }}
+    </div>
     @endif
     <video id="qr-video" width="640" height="480" autoplay></video>
     <canvas id="qr-canvas" width="640" height="480" style="display:none;"></canvas>
