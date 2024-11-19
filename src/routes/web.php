@@ -38,7 +38,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::patch('/reservation/update', [ReservationController::class, 'update'])->name('reservation.update');
 
     Route::get('/reservation/scan', [ReservationController::class, 'scan'])->name('reservation.scan');
-    Route::get('/reservation/verify/{id}', [ReservationController::class, 'verify'])->name('reservation.verify');
+    Route::get('/reservation/verify/{id?}', [ReservationController::class, 'verify'])->name('reservation.verify');
     Route::post('/reservation/verify/{id}', [ReservationController::class, 'updateIsVisited'])->name('reservation.updateIsVisited');
 
     Route::post('/review', [ReviewController::class, 'store']);

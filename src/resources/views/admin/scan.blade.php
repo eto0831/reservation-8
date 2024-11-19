@@ -3,6 +3,16 @@
 @section('content')
 <div class="scan-qrcode">
     <h2>QRコードを読み込んでください</h2>
+    {{-- メッセージを表示 --}}
+    @if(session('error'))
+        <div class="alert alert-danger">
+            {{ session('error') }}
+        </div>
+    @elseif(isset($message))
+        <div class="alert alert-danger">
+            {{ $message }}
+        </div>
+    @endif
     <video id="qr-video" width="640" height="480" autoplay></video>
     <canvas id="qr-canvas" width="640" height="480" style="display:none;"></canvas>
     <p id="qr-result"></p>
@@ -32,14 +42,21 @@
       const code = jsQR(imageData.data, imageData.width, imageData.height);
 
       if (code) {
-        result.textContent = code.data;
-        // QRコードのデータから予約IDを取得
-        const reservationId = code.data.split('/').pop();
-        // verifyページにリダイレクト
-        window.location.href = "{{ route('reservation.verify', '') }}/" + reservationId;
-      }
+            result.textContent = code.data;
+
+            // QRコードのデータから予約IDを取得
+            let reservationId = code.data.split('/').pop();
+
+            // 予約IDが数値でない場合は空文字列を設定
+            if (!reservationId || isNaN(reservationId) || !/^\d+$/.test(reservationId)) {
+                reservationId = '';
+            }
+
+            // verifyページにリダイレクト
+            window.location.href = "{{ route('reservation.verify', '') }}/" + reservationId;
+        }
     }
     requestAnimationFrame(tick);
-  }
+}
 </script>
 @endsection

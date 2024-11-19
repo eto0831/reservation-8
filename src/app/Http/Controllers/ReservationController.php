@@ -51,18 +51,25 @@ class ReservationController extends Controller
 
     public function scan()
     {
-        return view('admin.scan');
+        $message = session('error') ?? null; // エラーメッセージをセッションから取得
+        return view('admin.scan', compact('message'));
     }
 
-    public function verify($id)
+    public function verify($id = null)
     {
+        if (!$id || !is_numeric($id)) {
+            return redirect()->route('reservation.scan')->with('error', '無効なQRコードが読み取られました。');
+        }
+
         $reservation = Reservation::find($id);
+
         if ($reservation) {
             return view('admin.verify', compact('reservation'));
         } else {
-            return redirect()->back()->with('error', '予約が見つかりませんでした');
+            return redirect()->route('reservation.scan')->with('error', '予約が見つかりませんでした。');
         }
     }
+
 
     public function updateIsVisited(Request $request, $id)
     {
@@ -77,21 +84,20 @@ class ReservationController extends Controller
     }
 
     public function process(Request $request)
-{
-    // 入力値のバリデーション
-    $request->validate([
-        'shop_id' => 'required|exists:shops,id',
-        'reserve_date' => 'required|date',
-        'reserve_time' => 'required',
-        'guest_count' => 'required|integer|min:1|max:10',
-    ]);
+    {
+        // 入力値のバリデーション
+        $request->validate([
+            'shop_id' => 'required|exists:shops,id',
+            'reserve_date' => 'required|date',
+            'reserve_time' => 'required',
+            'guest_count' => 'required|integer|min:1|max:10',
+        ]);
 
-    // 予約情報をセッションに保存
-    $reservationData = $request->only(['shop_id', 'reserve_date', 'reserve_time', 'guest_count']);
-    session(['reservation_data' => $reservationData]);
+        // 予約情報をセッションに保存
+        $reservationData = $request->only(['shop_id', 'reserve_date', 'reserve_time', 'guest_count']);
+        session(['reservation_data' => $reservationData]);
 
-    // 決済画面にリダイレクト
-    return redirect()->route('payment.index');
-}
-
+        // 決済画面にリダイレクト
+        return redirect()->route('payment.index');
+    }
 }
