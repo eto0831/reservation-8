@@ -10,6 +10,7 @@ use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Log;
 
 class SendReminderEmailJob implements ShouldQueue
 {
@@ -34,7 +35,15 @@ class SendReminderEmailJob implements ShouldQueue
      */
     public function handle()
     {
-        Mail::to($this->reservation->user->email)
-            ->send(new ReservationReminderMail($this->reservation));
+        try {
+            Log::info('SendReminderEmailJob: Sending email for reservation ID ' . $this->reservation->id);
+
+            Mail::to($this->reservation->user->email)
+                ->send(new ReservationReminderMail($this->reservation));
+
+            Log::info('SendReminderEmailJob: Email sent successfully for reservation ID ' . $this->reservation->id);
+        } catch (\Exception $e) {
+            Log::error('SendReminderEmailJob: Failed to send email for reservation ID ' . $this->reservation->id . '. Error: ' . $e->getMessage());
+        }
     }
 }
