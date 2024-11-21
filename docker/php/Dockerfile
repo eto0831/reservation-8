@@ -13,4 +13,7 @@ RUN curl -sS https://getcomposer.org/installer | php \
 
 RUN useradd -m eto0831
 
+# cronをインストール
+RUN apt-get update && apt-get install -y cron
+
 WORKDIR /var/www
