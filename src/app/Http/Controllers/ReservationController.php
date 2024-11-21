@@ -46,7 +46,7 @@ class ReservationController extends Controller
         $reservation =  $request->all();
         Reservation::find($request->input('reservation_id'))->update($reservation);
 
-        return redirect('/mypage');
+        return redirect('/mypage')->with('status', '予約を変更しました');
     }
 
     public function scan()
