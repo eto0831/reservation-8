@@ -63,7 +63,7 @@ class ShopController extends Controller
         ];
 
         if ($request->hasFile('image')) {
-            $imagePath = $request->file('image')->store('public/images/shops'); // ディレクトリを変更
+            $imagePath = $request->file('image')->store('public/images/shops');
             $shopData['image_url'] = str_replace('public/', 'storage/', $imagePath); // パスを公開用に変換
         }
 

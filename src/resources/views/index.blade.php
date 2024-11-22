@@ -17,7 +17,8 @@
             <select class="search-form__item-select" name="area_id">
                 <option value="">All area</option>
                 @foreach ($areas as $area)
-                <option value="{{ $area->id }}">{{ $area->area_name }}</option>
+                <option value="{{ $area->id }}" @if(request('area_id') == $area->id) selected @endif>
+                    {{ $area->area_name }}</option>
                 @endforeach
             </select>
         </div>
@@ -25,7 +26,7 @@
             <select class="search-form__item-select" name="genre_id">
                 <option value="">All genre</option>
                 @foreach ($genres as $genre)
-                <option value="{{ $genre->id }}">{{ $genre->genre_name }}</option>
+                <option value="{{ $genre->id }}" @if(request('genre_id') == $genre->id) selected @endif>{{ $genre->genre_name }}</option>
                 @endforeach
             </select>
         </div>
