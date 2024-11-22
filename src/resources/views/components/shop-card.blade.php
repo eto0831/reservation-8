@@ -22,4 +22,5 @@
         </form>
         @endif
     </div>
+    <a href="/shop/edit/{{ $shop->id }}">編集</a>
 </div>

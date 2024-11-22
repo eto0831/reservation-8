@@ -39,7 +39,7 @@ class ShopController extends Controller
             ->with(['shop', 'user'])
             ->orderByRaw("CASE WHEN user_id = ? THEN 0 ELSE 1 END", [auth()->id()]) // ログインユーザーのレビューを先頭に
             ->get();
-        return view('detail', compact('shop', 'areas', 'genres','reviews'));
+        return view('detail', compact('shop', 'areas', 'genres', 'reviews'));
     }
 
     public function create()
@@ -51,15 +51,23 @@ class ShopController extends Controller
 
     public function store(Request $request)
     {
-        $shop = [
+        $request->validate([
+            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048', // 画像のバリデーションルールを追加
+        ]);
+
+        $shopData = [
             'shop_name' => $request->shop_name,
-            'area_id' =>  $request->area_id,
+            'area_id' => $request->area_id,
             'genre_id' => $request->genre_id,
             'description' => $request->description,
         ];
-        $areas = Area::all();
-        $genres = Genre::all();
-        Shop::create($shop);
+
+        if ($request->hasFile('image')) {
+            $imagePath = $request->file('image')->store('public/images/shops'); // ディレクトリを変更
+            $shopData['image_url'] = str_replace('public/', 'storage/', $imagePath); // パスを公開用に変換
+        }
+
+        Shop::create($shopData);
 
         return redirect('/');
     }
@@ -75,21 +83,34 @@ class ShopController extends Controller
 
     public function update(Request $request)
     {
-        $shop =  $request->all();
-        $areas = Area::all();
-        $genres = Genre::all();
-        Shop::find($request->input('shop_id'))->update($shop);
+        $request->validate([
+            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048', // 画像のバリデーションルールを追加
+        ]);
+
+        $shopData = [
+            'shop_name' => $request->shop_name,
+            'area_id' => $request->area_id,
+            'genre_id' => $request->genre_id,
+            'description' => $request->description,
+        ];
+
+        if ($request->hasFile('image')) {
+            $imagePath = $request->file('image')->store('public/images/shops'); // ディレクトリを変更
+            $shopData['image_url'] = str_replace('public/', 'storage/', $imagePath); // パスを公開用に変換
+        }
+
+        Shop::find($request->input('shop_id'))->update($shopData);
 
         return redirect('/')->with('status', '店舗情報を変更しました');
     }
 
     public function destroy(Request $request)
-{
-    try {
-        Shop::where('id', $request->shop_id)->delete();
-        return back()->with('success', '店舗情報を削除しました'); 
-    } catch (\Exception $e) {
-        return redirect('/')->with('error', '店舗情報の削除に失敗しました: ' . $e->getMessage()); 
+    {
+        try {
+            Shop::where('id', $request->shop_id)->delete();
+            return redirect('/')->with('success', '店舗情報を削除しました');
+        } catch (\Exception $e) {
+            return redirect('/')->with('error', '店舗情報の削除に失敗しました: ' . $e->getMessage());
+        }
     }
-}
 }
