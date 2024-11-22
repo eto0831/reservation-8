@@ -51,7 +51,7 @@ class ReservationController extends Controller
 
     public function scan()
 {
-    return view('admin.scan');
+    return view('stores.scan');
 }
 
 public function verify($id = null)
@@ -63,7 +63,7 @@ public function verify($id = null)
     $reservation = Reservation::find($id);
 
     if ($reservation) {
-        return view('admin.verify', compact('reservation'));
+        return view('stores.verify', compact('reservation'));
     } else {
         return redirect()->route('reservation.scan')->with('error', '予約が見つかりませんでした。');
     }

@@ -51,4 +51,10 @@ Route::middleware(['auth', 'verified'])->group(function () {
 
 
     Route::post('/reservation/process', [ReservationController::class, 'process'])->name('reservation.process');
+
+    Route::get('/shop/create', [ShopController::class, 'create'])->name('shop.create');
+    Route::post('/shop/create', [ShopController::class, 'store'])->name('shop.store');
+    Route::get('/shop/edit/{id}', [ShopController::class, 'edit'])->name('shop.edit');
+    Route::patch('/shop/update/{id}', [ShopController::class, 'update'])->name('shop.update');
+    Route::delete('/shop/delete/{id}', [ShopController::class, 'destroy'])->name('shop.destroy');
 });
