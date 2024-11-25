@@ -49,3 +49,11 @@ services:
             - "8025:8025"
         volumes:
             - "./bin/mhsendmail:/usr/local/bin/mhsendmail"
+    queue:
+        build: ./docker/php
+        user: "1000:1000"
+        volumes:
+            - ./src:/var/www/
+        depends_on:
+            - php
+        command: ["php", "artisan", "queue:work", "--queue=default", "--sleep=3", "--tries=3"]

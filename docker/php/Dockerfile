@@ -16,6 +16,13 @@ RUN useradd -m eto0831
 # cronをインストール
 RUN apt-get update && apt-get install -y cron
 
-CMD ["sh", "-c", "php artisan queue:work --sleep=3 --tries=3 & php-fpm"]
+# スーパーバイザーをインストール
+RUN apt-get update && apt-get install -y supervisor
+
+# スーパーバイザーの設定ファイルをコピー
+COPY supervisor.conf /etc/supervisor/conf.d/supervisord.conf
+
+# スーパーバイザーを起動
+CMD ["/usr/bin/supervisord", "-c", "/etc/supervisor/conf.d/supervisord.conf"]
 
 WORKDIR /var/www
