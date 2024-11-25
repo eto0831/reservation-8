@@ -20,5 +20,9 @@ RUN apt-get update && apt-get install -y cron
 COPY scheduler.sh /usr/local/bin/scheduler.sh
 RUN chmod +x /usr/local/bin/scheduler.sh
 
+RUN apt-get update && apt-get install -y supervisor
+COPY supervisor.conf /etc/supervisor/conf.d/supervisor.conf
+
+CMD ["sh", "-c", "php artisan queue:work --sleep=3 --tries=3 & php-fpm"]
 
 WORKDIR /var/www

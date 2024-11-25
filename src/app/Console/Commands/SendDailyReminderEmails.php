@@ -8,6 +8,7 @@ use Carbon\Carbon;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Log;
+use App\Jobs\SendReminderEmailJob;
 
 class SendDailyReminderEmails extends Command
 {
