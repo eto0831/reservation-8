@@ -3,3 +3,51 @@
 2024-11-25 07:48:57,759 INFO spawned: 'php-fpm' with pid 10
 2024-11-25 07:48:58,794 INFO success: queue_00 entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
 2024-11-25 07:48:58,794 INFO success: php-fpm entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2024-11-25 08:38:33,129 WARN received SIGQUIT indicating exit request
+2024-11-25 08:38:33,130 INFO waiting for queue_00, php-fpm to die
+2024-11-25 08:38:33,136 INFO stopped: php-fpm (exit status 0)
+2024-11-25 08:38:33,138 INFO stopped: queue_00 (terminated by SIGTERM)
+2024-11-25 08:38:44,430 INFO supervisord started with pid 1
+2024-11-25 08:38:45,432 INFO spawned: 'queue_00' with pid 9
+2024-11-25 08:38:45,434 INFO spawned: 'php-fpm' with pid 10
+2024-11-25 08:38:46,456 INFO success: queue_00 entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2024-11-25 08:38:46,456 INFO success: php-fpm entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2024-11-25 09:55:08,203 WARN received SIGQUIT indicating exit request
+2024-11-25 09:55:08,205 INFO waiting for queue_00, php-fpm to die
+2024-11-25 09:55:08,222 INFO stopped: php-fpm (exit status 0)
+2024-11-25 09:55:08,225 INFO stopped: queue_00 (terminated by SIGTERM)
+2024-11-25 10:04:03,209 INFO supervisord started with pid 1
+2024-11-25 10:04:04,212 INFO spawned: 'queue_00' with pid 9
+2024-11-25 10:04:05,214 INFO success: queue_00 entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2024-11-25 10:05:19,003 WARN received SIGQUIT indicating exit request
+2024-11-25 10:05:19,003 INFO waiting for queue_00 to die
+2024-11-25 10:05:19,004 INFO stopped: queue_00 (terminated by SIGTERM)
+2024-11-25 10:05:30,010 INFO supervisord started with pid 1
+2024-11-25 10:05:31,012 INFO spawned: 'queue_00' with pid 9
+2024-11-25 10:05:31,013 INFO spawned: 'php-fpm' with pid 10
+2024-11-25 10:05:32,047 INFO success: queue_00 entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2024-11-25 10:05:32,047 INFO success: php-fpm entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2024-11-25 10:10:32,308 WARN received SIGQUIT indicating exit request
+2024-11-25 10:10:32,308 INFO waiting for queue_00, php-fpm to die
+2024-11-25 10:10:32,311 INFO stopped: php-fpm (exit status 0)
+2024-11-25 10:10:32,312 INFO stopped: queue_00 (terminated by SIGTERM)
+2024-11-25 10:10:43,482 INFO supervisord started with pid 1
+2024-11-25 10:10:44,485 INFO spawned: 'queue_00' with pid 9
+2024-11-25 10:10:44,486 INFO spawned: 'php-fpm' with pid 10
+2024-11-25 10:10:44,496 INFO exited: queue_00 (exit status 127; not expected)
+2024-11-25 10:10:45,506 INFO spawned: 'queue_00' with pid 13
+2024-11-25 10:10:45,506 INFO success: php-fpm entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2024-11-25 10:10:45,508 INFO exited: queue_00 (exit status 127; not expected)
+2024-11-25 10:10:47,511 INFO spawned: 'queue_00' with pid 14
+2024-11-25 10:10:47,513 INFO exited: queue_00 (exit status 127; not expected)
+2024-11-25 10:10:50,517 INFO spawned: 'queue_00' with pid 15
+2024-11-25 10:10:50,520 INFO exited: queue_00 (exit status 127; not expected)
+2024-11-25 10:10:51,521 INFO gave up: queue_00 entered FATAL state, too many start retries too quickly
+2024-11-25 10:24:58,305 WARN received SIGQUIT indicating exit request
+2024-11-25 10:24:58,305 INFO waiting for php-fpm to die
+2024-11-25 10:24:58,308 INFO stopped: php-fpm (exit status 0)
+2024-11-25 10:25:09,465 INFO supervisord started with pid 1
+2024-11-25 10:25:10,469 INFO spawned: 'queue_00' with pid 9
+2024-11-25 10:25:10,472 INFO spawned: 'php-fpm' with pid 10
+2024-11-25 10:25:11,495 INFO success: queue_00 entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2024-11-25 10:25:11,495 INFO success: php-fpm entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
