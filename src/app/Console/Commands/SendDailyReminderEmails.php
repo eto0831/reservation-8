@@ -3,12 +3,10 @@
 namespace App\Console\Commands;
 
 use App\Models\Reservation;
-use App\Mail\ReservationReminderMail;
+use App\Jobs\SendReminderEmailJob; // ここが必要、直接送信の場合はJobでなくMailを指定。
 use Carbon\Carbon;
 use Illuminate\Console\Command;
-use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Log;
-use App\Jobs\SendReminderEmailJob;
 
 class SendDailyReminderEmails extends Command
 {
@@ -33,19 +31,16 @@ class SendDailyReminderEmails extends Command
 
         foreach ($reservations as $reservation) {
             try {
-                Log::info('SendDailyReminderEmails: Sending email for reservation ID ' . $reservation->id);
+                // ジョブをディスパッチして非同期的にメールを送信
+                SendReminderEmailJob::dispatch($reservation);
 
-                // 直接メールを送信
-                Mail::to($reservation->user->email)
-                    ->send(new ReservationReminderMail($reservation));
-
-                Log::info('SendDailyReminderEmails: Email sent successfully for reservation ID ' . $reservation->id);
+                Log::info('SendDailyReminderEmails: Job dispatched for reservation ID ' . $reservation->id);
             } catch (\Exception $e) {
-                Log::error('SendDailyReminderEmails: Failed to send email for reservation ID ' . $reservation->id . '. Error: ' . $e->getMessage());
+                Log::error('SendDailyReminderEmails: Failed to dispatch job for reservation ID ' . $reservation->id . '. Error: ' . $e->getMessage());
             }
         }
 
-        $this->info('Reminder emails sent successfully.');
+        $this->info('Reminder email jobs dispatched successfully.');
         Log::info('SendDailyReminderEmails: Command execution completed.');
     }
 }
