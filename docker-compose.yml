@@ -62,4 +62,3 @@ services:
             - ./src:/var/www/
         depends_on:
             - php
-        command: ["php", "artisan", "queue:work", "--queue=default", "--sleep=3", "--tries=3"]
