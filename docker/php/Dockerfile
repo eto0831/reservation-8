@@ -13,6 +13,10 @@ RUN curl -sS https://getcomposer.org/installer | php \
 
 RUN useradd -m eto0831
 
+# タイムゾーンの設定を追加
+RUN apt-get update && apt-get install -y tzdata
+ENV TZ=Asia/Tokyo
+
 # cronをインストール
 RUN apt-get update && apt-get install -y cron
 
