@@ -53,6 +53,7 @@ services:
         build: ./docker/php
         volumes:
             - ./src:/var/www/
+            - /etc/localtime:/etc/localtime:ro  # 追加
         depends_on:
             - php
         command: ["sh", "-c", "/usr/local/bin/scheduler.sh"]
@@ -60,5 +61,6 @@ services:
         build: ./docker/php
         volumes:
             - ./src:/var/www/
+            - /etc/localtime:/etc/localtime:ro  # 追加
         depends_on:
             - php
