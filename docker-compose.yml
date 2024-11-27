@@ -49,9 +49,15 @@ services:
             - "8025:8025"
         volumes:
             - "./bin/mhsendmail:/usr/local/bin/mhsendmail"
+    scheduler:
+        build: ./docker/php
+        volumes:
+            - ./src:/var/www/
+        depends_on:
+            - php
+        command: ["sh", "-c", "/usr/local/bin/scheduler.sh"]
     queue:
         build: ./docker/php
-        user: "1000:1000"
         volumes:
             - ./src:/var/www/
         depends_on:
