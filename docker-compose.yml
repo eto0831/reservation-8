@@ -54,6 +54,7 @@ services:
         volumes:
             - ./src:/var/www/
             - /etc/localtime:/etc/localtime:ro  # 追加
+            - /etc/timezone:/etc/timezone:ro
         depends_on:
             - php
         command: ["sh", "-c", "/usr/local/bin/scheduler.sh"]
@@ -62,5 +63,6 @@ services:
         volumes:
             - ./src:/var/www/
             - /etc/localtime:/etc/localtime:ro  # 追加
+            - /etc/timezone:/etc/timezone:ro
         depends_on:
             - php
