@@ -83,25 +83,34 @@ MAIL_ENCRYPTION=null
 MAIL_FROM_ADDRESS=test@example.com
 MAIL_FROM_NAME="${APP_NAME}"
 ```
-5. アプリケーションキーの作成
+
+5.  PHPコンテナを出る
+```bash
+exit
+```
+6. 再ビルド
+```bash
+docker-compose up -d --build
+```
+7. アプリケーションキーの作成
 ``` bash
 php artisan key:generate
 ```
 
-6. マイグレーションの実行
+8. マイグレーションの実行
 ``` bash
 php artisan migrate
 ```
 
-7. シーディングの実行
+9. シーディングの実行
 ``` bash
 php artisan db:seed
 ```
-8. シンボリックリンクの作成
+10. シンボリックリンクの作成
 ```bash
 php artisan storage:link
 ```
-9. 画像の貼り付け
+11. 画像の貼り付け
 ```text
 reservation-2/src/storage/app/public/images/shops
 ```
