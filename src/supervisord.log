@@ -166,3 +166,53 @@
 2024-11-27 22:46:18,189 INFO exited: queue_00 (exit status 0; expected)
 2024-11-27 22:46:19,192 INFO spawned: 'queue_00' with pid 26
 2024-11-27 22:46:20,192 INFO success: queue_00 entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2024-11-27 22:51:33,565 WARN received SIGQUIT indicating exit request
+2024-11-27 22:51:33,565 INFO waiting for queue_00, php-fpm to die
+2024-11-27 22:51:33,568 INFO stopped: php-fpm (exit status 0)
+2024-11-27 22:51:33,570 INFO stopped: queue_00 (terminated by SIGTERM)
+2024-11-27 22:51:37,557 INFO exited: queue_00 (exit status 0; expected)
+2024-11-27 22:51:38,560 INFO spawned: 'queue_00' with pid 33
+2024-11-27 22:51:39,562 INFO success: queue_00 entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2024-11-27 22:51:43,861 WARN received SIGQUIT indicating exit request
+2024-11-27 22:51:43,861 INFO waiting for queue_00, php-fpm to die
+2024-11-27 22:51:43,864 INFO stopped: php-fpm (exit status 0)
+2024-11-27 22:51:43,865 INFO stopped: queue_00 (terminated by SIGTERM)
+2024-11-27 22:52:47,165 INFO supervisord started with pid 1
+2024-11-27 22:52:47,847 CRIT Supervisor is running as root.  Privileges were not dropped because no user is specified in the config file.  If you intend to run as root, you can set user=root in the config file to avoid this message.
+2024-11-27 22:52:47,848 INFO supervisord started with pid 1
+2024-11-27 22:52:48,167 INFO spawned: 'queue_00' with pid 9
+2024-11-27 22:52:48,169 INFO spawned: 'php-fpm' with pid 10
+2024-11-27 22:52:48,851 INFO spawned: 'queue_00' with pid 9
+2024-11-27 22:52:48,854 INFO spawned: 'php-fpm' with pid 10
+2024-11-27 22:52:49,198 INFO success: queue_00 entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2024-11-27 22:52:49,198 INFO success: php-fpm entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2024-11-27 22:52:49,866 INFO success: queue_00 entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2024-11-27 22:52:49,866 INFO success: php-fpm entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2024-11-27 22:53:48,355 INFO exited: queue_00 (exit status 0; expected)
+2024-11-27 22:53:49,358 INFO spawned: 'queue_00' with pid 19
+2024-11-27 22:53:50,358 INFO success: queue_00 entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2024-11-28 14:15:18,229 INFO supervisord started with pid 1
+2024-11-28 14:15:18,922 CRIT Supervisor is running as root.  Privileges were not dropped because no user is specified in the config file.  If you intend to run as root, you can set user=root in the config file to avoid this message.
+2024-11-28 14:15:18,924 INFO supervisord started with pid 1
+2024-11-28 14:15:19,242 INFO spawned: 'queue_00' with pid 9
+2024-11-28 14:15:19,257 INFO spawned: 'php-fpm' with pid 10
+2024-11-28 14:15:19,926 INFO spawned: 'queue_00' with pid 9
+2024-11-28 14:15:19,928 INFO spawned: 'php-fpm' with pid 10
+2024-11-28 14:15:20,338 INFO success: queue_00 entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2024-11-28 14:15:20,338 INFO success: php-fpm entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2024-11-28 14:15:20,960 INFO success: queue_00 entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2024-11-28 14:15:20,960 INFO success: php-fpm entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2024-11-28 14:15:23,623 INFO exited: queue_00 (exit status 0; expected)
+2024-11-28 14:15:24,625 INFO spawned: 'queue_00' with pid 19
+2024-11-28 14:15:25,627 INFO success: queue_00 entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2024-11-28 14:58:42,680 WARN received SIGQUIT indicating exit request
+2024-11-28 14:58:42,688 INFO waiting for queue_00, php-fpm to die
+2024-11-28 14:58:42,731 INFO stopped: php-fpm (exit status 0)
+2024-11-28 14:58:42,735 INFO stopped: queue_00 (terminated by SIGTERM)
+2024-11-28 14:58:48,960 INFO exited: queue_00 (exit status 0; expected)
+2024-11-28 14:58:49,968 INFO spawned: 'queue_00' with pid 26
+2024-11-28 14:58:50,970 INFO success: queue_00 entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2024-11-28 14:58:53,055 WARN received SIGQUIT indicating exit request
+2024-11-28 14:58:53,055 INFO waiting for queue_00, php-fpm to die
+2024-11-28 14:58:53,074 INFO stopped: php-fpm (exit status 0)
+2024-11-28 14:58:53,076 INFO stopped: queue_00 (terminated by SIGTERM)
