@@ -88,9 +88,17 @@ MAIL_FROM_NAME="${APP_NAME}"
 ```bash
 exit
 ```
+6. ドッカーを落とす
+```bash
+docker-compose down
+```
 6. 再ビルド
 ```bash
 docker-compose up -d --build
+```
+1. コンテナに入る
+```bash
+docker-compose exec php bash
 ```
 7. アプリケーションキーの作成
 ``` bash
