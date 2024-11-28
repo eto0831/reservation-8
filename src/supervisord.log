@@ -262,3 +262,19 @@
 2024-11-28 18:52:02,206 INFO exited: queue_00 (exit status 0; expected)
 2024-11-28 18:52:03,209 INFO spawned: 'queue_00' with pid 19
 2024-11-28 18:52:04,210 INFO success: queue_00 entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2024-11-28 20:16:41,123 WARN received SIGQUIT indicating exit request
+2024-11-28 20:16:41,125 INFO waiting for queue_00, php-fpm to die
+2024-11-28 20:16:41,141 INFO stopped: php-fpm (exit status 0)
+2024-11-28 20:16:41,144 INFO stopped: queue_00 (terminated by SIGTERM)
+2024-11-28 20:16:43,194 INFO supervisord started with pid 1
+2024-11-28 20:16:44,197 INFO spawned: 'queue' with pid 9
+2024-11-28 20:16:44,198 INFO spawned: 'php-fpm' with pid 10
+2024-11-28 20:16:44,199 INFO spawned: 'scheduler' with pid 11
+2024-11-28 20:16:45,222 INFO success: queue entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2024-11-28 20:16:45,222 INFO success: php-fpm entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2024-11-28 20:16:45,222 INFO success: scheduler entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2024-11-28 20:18:08,414 INFO exited: queue (exit status 0; expected)
+2024-11-28 20:18:09,417 INFO spawned: 'queue' with pid 37
+2024-11-28 20:18:09,539 INFO exited: queue (exit status 0; not expected)
+2024-11-28 20:18:10,542 INFO spawned: 'queue' with pid 44
+2024-11-28 20:18:11,544 INFO success: queue entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)

@@ -1,36 +1,24 @@
 FROM php:7.4.9-fpm
 
-COPY php.ini /usr/local/etc/php/
-
-# php-gd拡張をインストールするための変更
+# 必要な拡張をインストール
 RUN apt update \
-  && apt install -y default-mysql-client zlib1g-dev libzip-dev unzip libpng-dev \
+  && apt install -y default-mysql-client zlib1g-dev libzip-dev unzip libpng-dev tzdata cron supervisor \
   && docker-php-ext-install pdo_mysql zip gd
 
+# Composerをインストール
 RUN curl -sS https://getcomposer.org/installer | php \
-  && mv composer.phar /usr/local/bin/composer \
-  && composer self-update
+  && mv composer.phar /usr/local/bin/composer
 
-RUN useradd -m eto0831
-
-# タイムゾーンの設定を追加
-RUN apt-get update && apt-get install -y tzdata
+# タイムゾーン設定
 ENV TZ=Asia/Tokyo
 
-# cronをインストール
-RUN apt-get update && apt-get install -y cron
+# 作業ディレクトリ
+WORKDIR /var/www
 
-# スケジュール用のエントリーポイントスクリプトを追加
+# SchedulerスクリプトとSupervisor設定を追加
 COPY scheduler.sh /usr/local/bin/scheduler.sh
+COPY supervisor.conf /etc/supervisor/conf.d/supervisord.conf
 RUN chmod +x /usr/local/bin/scheduler.sh
 
-# スーパーバイザーをインストール
-RUN apt-get update && apt-get install -y supervisor
-
-# スーパーバイザーの設定ファイルをコピー
-COPY supervisor.conf /etc/supervisor/conf.d/supervisord.conf
-
-# スーパーバイザーを起動
+# Supervisorでプロセスを管理
 CMD ["/usr/bin/supervisord", "-c", "/etc/supervisor/conf.d/supervisord.conf"]
-
-WORKDIR /var/www
