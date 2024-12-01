@@ -18,7 +18,9 @@ services:
             - ./src:/var/www/
         depends_on:
             - mysql
-        command: [ "/usr/bin/supervisord", "-c", "/etc/supervisor/conf.d/supervisord.conf" ]
+        environment:
+            - QUEUE_CONNECTION=database # キューの接続方法を指定
+        command: php-fpm
 
     mysql:
         image: mysql:8.0.26
@@ -48,3 +50,11 @@ services:
         image: mailhog/mailhog
         ports:
             - "8025:8025"
+
+    supervisor:
+        build: ./docker/supervisor
+        volumes:
+            - ./src:/var/www/
+        depends_on:
+            - php
+        command: ["/usr/bin/supervisord", "-c", "/etc/supervisor/conf.d/supervisord.conf"]
