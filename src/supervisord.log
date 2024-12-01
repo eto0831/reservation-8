@@ -278,3 +278,29 @@
 2024-11-28 20:18:09,539 INFO exited: queue (exit status 0; not expected)
 2024-11-28 20:18:10,542 INFO spawned: 'queue' with pid 44
 2024-11-28 20:18:11,544 INFO success: queue entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2024-12-01 17:37:08,269 INFO supervisord started with pid 1
+2024-12-01 17:37:09,271 INFO spawned: 'queue' with pid 9
+2024-12-01 17:37:09,273 INFO spawned: 'php-fpm' with pid 10
+2024-12-01 17:37:09,274 INFO spawned: 'scheduler' with pid 11
+2024-12-01 17:37:09,351 INFO exited: queue (exit status 255; not expected)
+2024-12-01 17:37:10,355 INFO spawned: 'queue' with pid 17
+2024-12-01 17:37:10,355 INFO success: php-fpm entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2024-12-01 17:37:10,355 INFO success: scheduler entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2024-12-01 17:37:10,370 INFO exited: queue (exit status 255; not expected)
+2024-12-01 17:37:12,373 INFO spawned: 'queue' with pid 24
+2024-12-01 17:37:12,385 INFO exited: queue (exit status 255; not expected)
+2024-12-01 17:37:15,389 INFO spawned: 'queue' with pid 25
+2024-12-01 17:37:15,400 INFO exited: queue (exit status 255; not expected)
+2024-12-01 17:37:16,402 INFO gave up: queue entered FATAL state, too many start retries too quickly
+2024-12-01 17:37:57,625 INFO reaped unknown pid 308
+2024-12-01 17:39:27,989 WARN received SIGQUIT indicating exit request
+2024-12-01 17:39:27,989 INFO waiting for php-fpm, scheduler to die
+2024-12-01 17:39:27,989 INFO stopped: scheduler (terminated by SIGTERM)
+2024-12-01 17:39:27,993 INFO stopped: php-fpm (exit status 0)
+2024-12-01 17:39:37,803 INFO supervisord started with pid 1
+2024-12-01 17:39:38,805 INFO spawned: 'queue' with pid 9
+2024-12-01 17:39:38,806 INFO spawned: 'php-fpm' with pid 10
+2024-12-01 17:39:38,807 INFO spawned: 'scheduler' with pid 11
+2024-12-01 17:39:39,822 INFO success: queue entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2024-12-01 17:39:39,822 INFO success: php-fpm entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2024-12-01 17:39:39,822 INFO success: scheduler entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
