@@ -21,6 +21,11 @@ services:
         environment:
             - QUEUE_CONNECTION=database # キューの接続方法を指定
         command: php-fpm
+        healthcheck:
+            test: ["CMD", "php", "-r", "exit(is_file('/var/www/vendor/autoload.php') && is_file('/var/www/storage/framework/cache/data/.gitignore') ? 0 : 1);"]
+            interval: 10s
+            timeout: 5s
+            retries: 3
 
     mysql:
         image: mysql:8.0.26
@@ -56,5 +61,6 @@ services:
         volumes:
             - ./src:/var/www/
         depends_on:
-            - php
+            php:
+                condition: service_healthy
         command: ["/usr/bin/supervisord", "-c", "/etc/supervisor/conf.d/supervisord.conf"]
