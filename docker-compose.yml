@@ -22,7 +22,7 @@ services:
             - QUEUE_CONNECTION=database # キューの接続方法を指定
         command: php-fpm
         healthcheck:
-            test: ["CMD", "php", "-r", "exit(is_file('/var/www/vendor/autoload.php') && is_file('/var/www/storage/framework/cache/data/.gitignore') ? 0 : 1);"]
+            test: ["CMD-SHELL", "if [ -f /var/www/vendor/autoload.php ] && [ -f /var/www/storage/framework/cache/data/.gitignore ]; then exit 0; else echo 'Not ready yet'; exit 1; fi"]
             interval: 10s
             timeout: 5s
             retries: 3
